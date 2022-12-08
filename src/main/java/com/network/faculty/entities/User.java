@@ -39,4 +39,7 @@ public class User {
     public void addRole(Role role){
         this.roles.add(role);
     }
+    public void addMessage(Message message){
+        this.messages.add(message);
+    }
 }
