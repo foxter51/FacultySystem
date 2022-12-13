@@ -37,8 +37,8 @@ class QuizRepositoryTest {
 
     @Test
     void testGetQuizzesBySenderId(){
-        List<Quiz> foundQuizzes = repo.getQuizzesBySenderId(1L);
-        List<Quiz> expectedQuizzes = List.of(repo.getById(1L));
+        List<Quiz> foundQuizzes = repo.getQuizzesBySenderId(4L);
+        List<Quiz> expectedQuizzes = List.of(repo.getReferenceById(1L));
         assertThat(foundQuizzes).isEqualTo(expectedQuizzes);
     }
 }
