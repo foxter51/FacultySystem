@@ -1,8 +1,6 @@
 package com.network.faculty.repos;
 
 import com.network.faculty.entities.Message;
-import com.network.faculty.repos.MessageRepository;
-import com.network.faculty.repos.UserRepository;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;

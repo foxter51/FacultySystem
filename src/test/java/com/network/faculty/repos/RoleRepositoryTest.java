@@ -1,7 +1,6 @@
 package com.network.faculty.repos;
 
 import com.network.faculty.entities.Role;
-import com.network.faculty.repos.RoleRepository;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;

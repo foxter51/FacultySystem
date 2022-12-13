@@ -1,8 +1,6 @@
 package com.network.faculty.repos;
 
 import com.network.faculty.entities.Quiz;
-import com.network.faculty.repos.QuizRepository;
-import com.network.faculty.repos.UserRepository;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
