@@ -1,4 +1,4 @@
-package com.network.faculty;
+package com.network.faculty.repos;
 
 import com.network.faculty.entities.User;
 import com.network.faculty.repos.RoleRepository;

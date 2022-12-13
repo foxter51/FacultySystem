@@ -1,4 +1,4 @@
-package com.network.faculty;
+package com.network.faculty.repos;
 
 import com.network.faculty.entities.Message;
 import com.network.faculty.repos.MessageRepository;
