@@ -1,6 +1,5 @@
 package com.network.faculty.service;
 
-import com.network.faculty.entities.Message;
 import com.network.faculty.entities.Quiz;
 import com.network.faculty.repos.QuizRepository;
 import com.network.faculty.repos.RoleRepository;
