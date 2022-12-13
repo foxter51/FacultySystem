@@ -18,7 +18,7 @@ public class CustomUserDetailsService implements UserDetailsService {
     protected UserRepository repo;
 
     @Autowired
-    private RoleRepository roleRepo;
+    private RoleDetailsService roleDetailsService;
 
     @Override
     public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
@@ -30,7 +30,7 @@ public class CustomUserDetailsService implements UserDetailsService {
     public boolean saveUser(User user, String role){
         user.setPassword(new BCryptPasswordEncoder().encode(user.getPassword()));
         user.setBlocked(false);
-        user.addRole(roleRepo.getRoleByName(role));
+        user.addRole(roleDetailsService.repo.getRoleByName(role));
         user.setEnabled(true);
         if(repo.getUserByEmail(user.getEmail()) == null){
             repo.save(user);
