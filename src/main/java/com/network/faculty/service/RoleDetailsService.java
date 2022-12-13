@@ -1,11 +1,11 @@
 package com.network.faculty.service;
 
 import com.network.faculty.repos.RoleRepository;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 @Service
+@RequiredArgsConstructor
 public class RoleDetailsService {
-    @Autowired
-    protected RoleRepository repo;
+    protected final RoleRepository repo;
 }

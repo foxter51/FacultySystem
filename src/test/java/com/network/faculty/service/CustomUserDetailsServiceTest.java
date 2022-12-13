@@ -1,42 +1,60 @@
 package com.network.faculty.service;
 
+import com.network.faculty.entities.User;
+import com.network.faculty.repos.RoleRepository;
+import com.network.faculty.repos.UserRepository;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
-import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
-import org.springframework.test.annotation.Rollback;
+import org.mockito.Mockito;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-@DataJpaTest
-@AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE)
-@Rollback(value = false)
 class CustomUserDetailsServiceTest {
 
-    @Test
-    void loadUserByUsername() {
+    private final UserRepository userRepo = Mockito.mock(UserRepository.class);
+    private final RoleRepository roleRepo = Mockito.mock(RoleRepository.class);
+    private CustomUserDetailsService userDetailsService;
+
+    @BeforeEach
+    void setUserDetailsService(){
+        RoleDetailsService roleDetailsService = new RoleDetailsService(roleRepo);
+        userDetailsService = new CustomUserDetailsService(userRepo, roleDetailsService);
     }
 
     @Test
-    void saveUser() {
+    void testSaveUser() {
+        User user = new User();
+        user.setEmail("test@gmail.com");
+        user.setPassword(new BCryptPasswordEncoder().encode("test"));
+        user.setFirstName("Ihor");
+        user.setLastName("Fedorchenko");
+        user.setBlocked(false);
+        user.setEnabled(true);
+        boolean success = userDetailsService.saveUser(user, "Student");
+        System.out.println(success);
+        assertTrue(success);
     }
 
     @Test
-    void getUserById() {
+    void testGetUserById() {
+//        userDetailsService.getUserById(3L);
+//        verify(userRepo.getReferenceById(3L));
     }
 
     @Test
-    void getUsersList() {
+    void testGetUsersList() {
     }
 
     @Test
-    void blockUserById() {
+    void testBlockUserById() {
     }
 
     @Test
-    void unblockUserById() {
+    void testUnblockUserById() {
     }
 
     @Test
-    void deleteUserById() {
+    void testDeleteUserById() {
     }
 }

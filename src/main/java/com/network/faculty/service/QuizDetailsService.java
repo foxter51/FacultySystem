@@ -3,18 +3,17 @@ package com.network.faculty.service;
 import com.network.faculty.entities.Message;
 import com.network.faculty.entities.Quiz;
 import com.network.faculty.repos.QuizRepository;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
+@RequiredArgsConstructor
 public class QuizDetailsService {
-    @Autowired
-    protected QuizRepository repo;
 
-    @Autowired
-    private CustomUserDetailsService userDetailsService;
+    protected final QuizRepository repo;
+    private final CustomUserDetailsService userDetailsService;
 
     public boolean saveQuiz(Long teacherId, Quiz quiz){
         quiz.setSender(userDetailsService.getUserById(teacherId));

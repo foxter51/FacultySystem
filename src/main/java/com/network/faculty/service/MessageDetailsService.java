@@ -2,6 +2,7 @@ package com.network.faculty.service;
 
 import com.network.faculty.entities.Message;
 import com.network.faculty.repos.MessageRepository;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
@@ -10,12 +11,11 @@ import java.io.IOException;
 import java.util.List;
 
 @Service
+@RequiredArgsConstructor
 public class MessageDetailsService {
-    @Autowired
-    protected MessageRepository repo;
 
-    @Autowired
-    private CustomUserDetailsService userDetailsService;
+    protected final MessageRepository repo;
+    private final CustomUserDetailsService userDetailsService;
 
     public boolean saveMessage(Long userId, Message message, MultipartFile file){
         message.setSender(userDetailsService.getUserById(userId));
