@@ -1,8 +1,10 @@
 package com.network.faculty.entities;
 
 import lombok.Data;
+import lombok.ToString;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Data
 @Entity
@@ -17,4 +19,8 @@ public class Quiz {
 
     @Column(nullable = false, columnDefinition = "TEXT")
     private String question;
+
+    @ToString.Exclude
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "sender", orphanRemoval = true)
+    List<Message> answers;
 }
