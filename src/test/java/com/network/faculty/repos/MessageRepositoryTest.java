@@ -47,7 +47,7 @@ class MessageRepositoryTest {
     @Test
     void testGetMessagesBySenderId(){
         List<Message> expectedMessages = userRepo.getUserByEmail("test@gmail.com").getMessages();
-        List<Message> foundMessages = repo.getMessagesBySenderId(1L);
+        List<Message> foundMessages = repo.getMessagesBySenderId(4L);
         assertArrayEquals(expectedMessages.toArray(), foundMessages.toArray());
     }
 
