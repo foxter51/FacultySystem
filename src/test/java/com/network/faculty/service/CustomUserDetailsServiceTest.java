@@ -32,29 +32,24 @@ class CustomUserDetailsServiceTest {
         user.setBlocked(false);
         user.setEnabled(true);
         boolean success = userDetailsService.saveUser(user, "Student");
-        System.out.println(success);
         assertTrue(success);
     }
 
     @Test
-    void testGetUserById() {
-//        userDetailsService.getUserById(3L);
-//        verify(userRepo.getReferenceById(3L));
-    }
-
-    @Test
-    void testGetUsersList() {
-    }
-
-    @Test
     void testBlockUserById() {
+        boolean success = userDetailsService.blockUserById(4L);
+        assertTrue(success);
     }
 
     @Test
     void testUnblockUserById() {
+        boolean success = userDetailsService.unblockUserById(4L);
+        assertTrue(success);
     }
 
     @Test
     void testDeleteUserById() {
+        boolean success = userDetailsService.deleteUserById(4L);
+        assertTrue(success);
     }
 }
