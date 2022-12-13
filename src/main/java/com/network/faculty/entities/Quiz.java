@@ -23,4 +23,8 @@ public class Quiz {
     @ToString.Exclude
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "sender", orphanRemoval = true)
     List<Message> answers;
+
+    public void addAnswer(Message answer){
+        this.answers.add(answer);
+    }
 }
