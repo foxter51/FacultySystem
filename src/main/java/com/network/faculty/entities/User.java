@@ -2,17 +2,17 @@ package com.network.faculty.entities;
 
 import lombok.Data;
 import lombok.ToString;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
 
 import javax.persistence.*;
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 @Data
 @Entity
 @Table
-public class User {
+public class User implements UserDetails {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -36,10 +36,43 @@ public class User {
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "sender", orphanRemoval = true)
     private List<Message> messages = new ArrayList<>();
 
+    private Boolean enabled;
+
+    private Boolean blocked;
+
     public void addRole(Role role){
         this.roles.add(role);
     }
-    public void addMessage(Message message){
-        this.messages.add(message);
+
+    @Override
+    public Collection<? extends GrantedAuthority> getAuthorities() {
+        List<SimpleGrantedAuthority> authorities = new ArrayList<>();
+        this.roles.forEach((role -> authorities.add(new SimpleGrantedAuthority(role.getName()))));
+        return authorities;
+    }
+
+    @Override
+    public String getUsername() {
+        return email;
+    }
+
+    @Override
+    public boolean isAccountNonExpired() {
+        return true;
+    }
+
+    @Override
+    public boolean isAccountNonLocked() {
+        return !blocked;
+    }
+
+    @Override
+    public boolean isCredentialsNonExpired() {
+        return true;
+    }
+
+    @Override
+    public boolean isEnabled() {
+        return enabled;
     }
 }
