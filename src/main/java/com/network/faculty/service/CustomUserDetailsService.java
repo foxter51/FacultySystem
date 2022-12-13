@@ -4,6 +4,7 @@ import com.network.faculty.entities.User;
 import com.network.faculty.repos.RoleRepository;
 import com.network.faculty.repos.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -45,5 +46,20 @@ public class CustomUserDetailsService implements UserDetailsService {
 
     public List<User> getUsersList(){
         return repo.findAll();
+    }
+
+    public boolean blockUserById(Long userId){
+        repo.blockById(userId);
+        return true;
+    }
+
+    public boolean unblockUserById(Long userId){
+        repo.unblockById(userId);
+        return true;
+    }
+
+    public boolean deleteUserById(Long userId){
+        repo.deleteById(userId);
+        return true;
     }
 }
